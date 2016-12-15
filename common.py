@@ -20,6 +20,6 @@ def splitLines(filename, expression):
     lines = []
     with open(filename) as fd:
         for line in fd:
-            parts = re.split(exp, line)
+            parts = re.split(exp, line.strip())
             lines.append(parts)
     return lines
