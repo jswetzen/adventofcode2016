@@ -2,7 +2,16 @@
 
 INPUT = 'input8.txt'
 
-from common import splitLines, matchRegex
+import re
+
+def splitLines(filename, expression):
+    exp = re.compile(expression)
+    lines = []
+    with open(filename) as fd:
+        for line in fd:
+            parts = re.split(exp, line.strip())
+            lines.append(parts)
+    return lines
 
 screen = [[0 for x in range(50)] for y in range(6)]
 

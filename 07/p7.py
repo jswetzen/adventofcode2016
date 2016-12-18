@@ -4,7 +4,14 @@ INPUT = 'input7.txt'
 
 import re
 
-import common
+def splitLines(filename, expression):
+    exp = re.compile(expression)
+    lines = []
+    with open(filename) as fd:
+        for line in fd:
+            parts = re.split(exp, line.strip())
+            lines.append(parts)
+    return lines
 
 def abba(string):
     match = re.match('.*(?P<fst>.)(?P<snd>.)(?P=snd)(?P=fst).*', string)
@@ -13,7 +20,7 @@ def abba(string):
 def task1():
     TLS_ips = []
 
-    for parts in common.splitLines(INPUT, '\[|\]'):
+    for parts in splitLines(INPUT, '\[|\]'):
         has_abba = False
         hyper_abba = False
 
@@ -44,7 +51,7 @@ def abas(string, reverse):
 def task2():
     TLS_ips = []
 
-    for parts in common.splitLines(INPUT, '\[|\]'):
+    for parts in splitLines(INPUT, '\[|\]'):
         aabas = set()
         hyper_abas = set()
 

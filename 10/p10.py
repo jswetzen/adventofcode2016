@@ -1,6 +1,15 @@
 #!/usr/bin/env python3
 
-from common import splitLines
+import re
+
+def splitLines(filename, expression):
+    exp = re.compile(expression)
+    lines = []
+    with open(filename) as fd:
+        for line in fd:
+            parts = re.split(exp, line.strip())
+            lines.append(parts)
+    return lines
 
 INPUT = "input10.txt"
 
